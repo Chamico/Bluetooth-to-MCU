@@ -6,9 +6,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import static com.example.chamico.bluetooth3.BluetoothChatService.inputDate;
 import static com.example.chamico.bluetooth3.ContronlActivity.contronlActivity;
-import static com.example.chamico.bluetooth3.ContronlActivity.outputDate;
+
 
 /**
  * Created by Chamico on 2018/6/11.

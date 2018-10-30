@@ -122,12 +122,16 @@ public class MainActivity extends Activity {
             //获取本地信息
             mainTVLocalName.setText(myBluetoothAdapter.getName());
             mainTVLocalAddress.setText(myBluetoothAdapter.getAddress());
+            //设置蓝牙状态标志位
+            myFunction.ISMYBTOPEN = true;
         }else{
             //设置Switch开关为关闭状态
             mainSwhOpen.setChecked(false);
             //恢复默认本地信息
             mainTVLocalName.setText("None");
             mainTVLocalAddress.setText("None");
+            //设置蓝牙状态标志位
+            myFunction.ISMYBTOPEN = false;
         }
 
         //如果蓝牙设备连接，显示信息
@@ -138,9 +142,7 @@ public class MainActivity extends Activity {
             mainActivity.mainTVRemoteName.clearComposingText();
             mainActivity.mainTVRemoteAddress.clearComposingText();
         }
-
     }
-
 
     @Override
     protected void onRestart() {

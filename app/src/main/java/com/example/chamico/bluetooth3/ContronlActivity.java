@@ -424,18 +424,21 @@ public class ContronlActivity extends Activity {
     }
 
     public void showItemsDialogFragment() {
-        String[] items = {"使用说明", "配置按钮", "退出"};
+        String[] items = {"断开连接","使用说明", "配置按钮", "退出"};
         itemsDialogFragment.show("", items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case 0:
-                        itemsDialogFragment.directionUse();
+                        itemsDialogFragment.disConnect();
                         break;
                     case 1:
-                        itemsDialogFragment.setButton();
+                        itemsDialogFragment.directionUse();
                         break;
                     case 2:
+                        itemsDialogFragment.setButton();
+                        break;
+                    case 3:
                         itemsDialogFragment.exitActivity();
                         break;
                 }

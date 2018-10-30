@@ -23,7 +23,6 @@ import static com.example.chamico.bluetooth3.ContronlActivity.myReceiveMessageLi
 import static com.example.chamico.bluetooth3.ContronlActivity.mySendMessageAdapter;
 import static com.example.chamico.bluetooth3.ContronlActivity.mySendMessageListt;
 import static com.example.chamico.bluetooth3.MainActivity.mainActivity;
-import static com.example.chamico.bluetooth3.MyFunction.ISDEVICECONNECTED;
 import static com.example.chamico.bluetooth3.MyFunction.ISMYBTOPEN;
 import static com.example.chamico.bluetooth3.MyFunction.MESSAGE_DEVICE_NAME;
 import static com.example.chamico.bluetooth3.MyFunction.MESSAGE_READ;
@@ -124,15 +123,9 @@ public class Open {
         mainActivity.mainBtnContronl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //判断是否成功连接设备
-                    //成功连接设备
-                    //跳转到下一个Activiry
-                if(ISDEVICECONNECTED){
-                    Intent intent = new Intent(mainActivity,ContronlActivity.class);
-                    mainActivity.startActivity(intent);
-                }else{
-                    myFunction.showToast("无设备连接，请重新连接设备重试！");
-                }
+                //跳转到下一个Activiry
+                Intent intent = new Intent(mainActivity,ContronlActivity.class);
+                mainActivity.startActivity(intent);
             }
         });
     }
@@ -382,6 +375,7 @@ public class Open {
                     mBluetoothChatService.start();
                    // myFunction.showToast("null Object");
                 }
+
                  mBluetoothChatService.connect(remoteDevice);
 
 
@@ -426,17 +420,23 @@ public class Open {
                     }
                     break;
                 case MESSAGE_WRITE:
-                    byte[] writeBuf = (byte[]) msg.obj;
-                    String writeMessage = new String(writeBuf);
-                    mySendMessageListt.add(writeMessage);
-                    mySendMessageAdapter.notifyDataSetChanged();
+                    if(myFunction.contronlActivityFlag){
+                        byte[] writeBuf = (byte[]) msg.obj;
+                        String writeMessage = new String(writeBuf);
+                        mySendMessageListt.add(writeMessage);
+                        mySendMessageAdapter.notifyDataSetChanged();
+                    }
+
                     break;
                 case MESSAGE_READ:
-                    byte[] readBuf = (byte[]) msg.obj;
-                    String readMessage = new String(readBuf, 0, msg.arg1);
-                    replaceBlank(readMessage);
-                    myReceiveMessageList.add(replaceBlank(readMessage));
-                    myReceiveMessageAdapter.notifyDataSetChanged();
+                    if(myFunction.contronlActivityFlag){
+                        byte[] readBuf = (byte[]) msg.obj;
+                        String readMessage = new String(readBuf, 0, msg.arg1);
+                        replaceBlank(readMessage);
+                        myReceiveMessageList.add(replaceBlank(readMessage));
+                        myReceiveMessageAdapter.notifyDataSetChanged();
+                    }
+
                     break;
                 case MESSAGE_DEVICE_NAME:
                     break;

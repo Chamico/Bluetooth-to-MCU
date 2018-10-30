@@ -10,9 +10,6 @@ import android.os.Bundle;
 import android.widget.Button;
 
 
-import static android.R.attr.direction;
-import static android.R.attr.factor;
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 import static com.example.chamico.bluetooth3.ContronlActivity.contronlActivity;
 import static com.example.chamico.bluetooth3.MainActivity.mainActivity;
 
@@ -23,6 +20,8 @@ import static com.example.chamico.bluetooth3.MainActivity.mainActivity;
  */
 
 public class ItemsDialogFragment extends DialogFragment {
+
+    private Open myOpen = new Open();
 
     public Button selfDialogBtnSaveDate;
 
@@ -61,7 +60,7 @@ public class ItemsDialogFragment extends DialogFragment {
                 .setTitle("说明")
                 .setIcon(R.drawable.contronl_explain)
                 .setMessage(
-                        "1、控制页默认发送信息和按钮显示的信息一致\n\n    " +
+                        "1、控制页面默认发送信息和按钮显示的信息一致\n\n    " +
                         "2、若需要修改按钮显示内容，点击“更多”-> “配置按钮”，根据显示的提示信息对按钮显示信息和发送信息进行修改，最下面有“保存”和“退出”\n\n    " +
                                 "3、点击相依的按钮可将信息发送到已连接的蓝牙设备上\n\n    " +
                                 "4、同时显示发送的信息和接收的信息到屏幕\n\n    " +
@@ -74,6 +73,17 @@ public class ItemsDialogFragment extends DialogFragment {
 
         SelfDialog selfDialog = new SelfDialog(getActivity(),R.style.Dialog);
         selfDialog.show();
+
+    }
+
+    public void disConnect(){
+        if(myFunction.ISDEVICECONNECTED){
+            //断开当前连接
+            myOpen.mBluetoothChatService.stop();
+            //myFunction.showToast("成功断开当前连接");
+        }else{
+            myFunction.showToast("操作失败，无设备连接");
+        }
 
     }
 
