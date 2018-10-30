@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/id1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设置按钮数据"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+
+        <LinearLayout
+            android:id="@+id/id2"
+            android:layout_below="@+id/id1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="名称        "
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置名称    "
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置发送数据"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/id3"
+            android:layout_below="@+id/id2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="3dp"/>
+
+        <LinearLayout
+            android:id="@+id/id4"
+            android:layout_below="@id/id3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/selfDialogTVMessage_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:layout_weight="1"
+                android:textSize="18dp"/>
+            <EditText
+                android:id="@+id/selfDialogEdtOrign_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/selfDialogEdtAfter_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/id5"
+            android:layout_below="@+id/id4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="3dp"/>
+
+        <LinearLayout
+            android:id="@+id/id6"
+            android:layout_below="@id/id5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/selfDialogTVMessage_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:layout_weight="1"
+                android:textSize="18dp"/>
+            <EditText
+                android:id="@+id/selfDialogEdtOrign_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/selfDialogEdtAfter_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/id7"
+            android:layout_below="@+id/id6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="3dp"/>
+
+        <LinearLayout
+            android:id="@+id/id8"
+            android:layout_below="@id/id7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/selfDialogTVMessage_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:layout_weight="1"
+                android:textSize="18dp"/>
+            <EditText
+                android:id="@+id/selfDialogEdtOrign_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/selfDialogEdtAfter_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/id9"
+            android:layout_below="@+id/id8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="3dp"/>
+
+        <LinearLayout
+            android:id="@+id/id10"
+            android:layout_below="@id/id9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/selfDialogTVMessage_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4"
+                android:layout_weight="1"
+                android:textSize="18dp"/>
+            <EditText
+                android:id="@+id/selfDialogEdtOrign_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/selfDialogEdtAfter_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/id11"
+            android:layout_below="@+id/id10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="3dp"/>
+
+        <LinearLayout
+            android:id="@+id/id12"
+            android:layout_below="@id/id11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/selfDialogTVMessage_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:layout_weight="1"
+                android:textSize="18dp"/>
+            <EditText
+                android:id="@+id/selfDialogEdtOrign_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/selfDialogEdtAfter_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/id13"
+            android:layout_below="@+id/id12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="3dp"/>
+
+        <LinearLayout
+            android:id="@+id/id14"
+            android:layout_below="@id/id13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/selfDialogTVMessage_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6"
+                android:layout_weight="1"
+                android:textSize="18dp"/>
+            <EditText
+                android:id="@+id/selfDialogEdtOrign_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/selfDialogEdtAfter_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/id15"
+            android:layout_below="@+id/id14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="3dp"/>
+
+        <LinearLayout
+            android:id="@+id/id16"
+            android:layout_below="@id/id15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/selfDialogTVMessage_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7"
+                android:layout_weight="1"
+                android:textSize="18dp"/>
+            <EditText
+                android:id="@+id/selfDialogEdtOrign_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/selfDialogEdtAfter_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/id17"
+            android:layout_below="@+id/id16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="3dp"/>
+
+        <LinearLayout
+            android:id="@+id/id18"
+            android:layout_below="@id/id17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/selfDialogTVMessage_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8"
+                android:layout_weight="1"
+                android:textSize="18dp"/>
+            <EditText
+                android:id="@+id/selfDialogEdtOrign_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/selfDialogEdtAfter_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/id19"
+            android:layout_below="@+id/id18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="3dp"/>
+
+        <LinearLayout
+            android:id="@+id/id20"
+            android:layout_below="@id/id19"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/selfDialogTVMessage_9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9"
+                android:layout_weight="1"
+                android:textSize="18dp"/>
+            <EditText
+                android:id="@+id/selfDialogEdtOrign_9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/selfDialogEdtAfter_9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/id21"
+            android:layout_below="@+id/id20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="3dp"/>
+
+        <LinearLayout
+            android:id="@+id/id22"
+            android:layout_below="@id/id21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/selfDialogTVMessage_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:layout_weight="1"
+                android:textSize="18dp"/>
+            <EditText
+                android:id="@+id/selfDialogEdtOrign_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/selfDialogEdtAfter_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/id23"
+            android:layout_below="@+id/id22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="3dp"/>
+
+        <LinearLayout
+            android:id="@+id/id24"
+            android:layout_below="@id/id23"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/selfDialogTVMessage_11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11"
+                android:layout_weight="1"
+                android:textSize="18dp"/>
+            <EditText
+                android:id="@+id/selfDialogEdtOrign_11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/selfDialogEdtAfter_11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/id25"
+            android:layout_below="@+id/id24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="3dp"/>
+
+        <LinearLayout
+            android:id="@+id/id26"
+            android:layout_below="@id/id25"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/selfDialogTVMessage_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12"
+                android:layout_weight="1"
+                android:textSize="18dp"/>
+            <EditText
+                android:id="@+id/selfDialogEdtOrign_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12"
+                android:layout_weight="1"/>
+            <EditText
+                android:id="@+id/selfDialogEdtAfter_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/id26">
+
+            <Button
+                android:id="@+id/selfDialogBtnSaveDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="保存设置"
+                android:background="@color/white"
+                android:textColor="@color/brown"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/selfDialogBtnExit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="退出"
+                android:background="@color/white"
+                android:textColor="@color/brown"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>
