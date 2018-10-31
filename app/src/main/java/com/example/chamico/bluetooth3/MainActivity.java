@@ -2,9 +2,6 @@ package com.example.chamico.bluetooth3;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothProfile;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -12,11 +9,11 @@ import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import java.security.KeyStore;
-import java.util.logging.SocketHandler;
+
+import java.io.File;
 
 import static com.example.chamico.bluetooth3.MyFunction.ISDEVICECONNECTED;
-import static com.example.chamico.bluetooth3.Open.open;
+
 import static com.example.chamico.bluetooth3.Open.remoteDevice;
 
 /*
@@ -28,8 +25,7 @@ public class MainActivity extends Activity {
 
     private Open myOpen = new Open();
     private MyFunction myFunction = new MyFunction();
-
-    public BluetoothProfile bluetoothProfile;
+    private Files myFiles = new Files();
 
     public static MainActivity mainActivity;
 
@@ -69,6 +65,11 @@ public class MainActivity extends Activity {
         //在“连接”界面，为 "标题"按钮设置监听器
         myOpen.setDeviceLististenerOnMain();
         Log.e("TAG","onCreate");
+
+        //myFiles.initData();
+        //myFiles.readFile("/storage/emulated/0/test/log.txt");
+        //myFiles.save();
+
     }
 
     /*
@@ -97,6 +98,8 @@ public class MainActivity extends Activity {
         mainLVDevieceBounded = (ListView) findViewById(R.id.mainLVDevieceBounded);
 
         mainActivity = MainActivity.this;
+
+
     }
 
     /*
@@ -184,5 +187,6 @@ public class MainActivity extends Activity {
         //unregisterReceiver(open.mReceiver);
     }
 }
+
 
 
