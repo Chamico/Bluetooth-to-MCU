@@ -2,14 +2,12 @@ package com.example.chamico.bluetooth3;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothProfile;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.chamico.bluetooth3.MainActivity.mainActivity;
-import static com.example.chamico.bluetooth3.MainActivity.myBluetoothAdapter;
 
 /**
  * Created by Chamico on 2018/5/1
@@ -52,6 +50,39 @@ public class MyFunction {
             SENDMSG_10 = null,
             SENDMSG_11 = null,
             SENDMSG_12 = null;
+
+    public String
+            APP_NAME = "蓝牙应用程序",
+            AUTUOR_INFO = "Chamico",
+
+
+            SEND_INFO_1 = "1",
+            SEND_INFO_2 = "2",
+            SEND_INFO_3 = "3",
+            SEND_INFO_4 = "4",
+            SEND_INFO_5 = "5",
+            SEND_INFO_6 = "6",
+            SEND_INFO_7 = "7",
+            SEND_INFO_8 = "8",
+            SEND_INFO_9 = "9",
+            SEND_INFO_10 = "10",
+            SEND_INFO_11 = "11",
+            SEND_INFO_12 = "12",
+
+
+            SEND_BTN_DISP_1 = "1",
+            SEND_BTN_DISP_2 = "2",
+            SEND_BTN_DISP_3 = "3",
+            SEND_BTN_DISP_4 = "4",
+            SEND_BTN_DISP_5 = "5",
+            SEND_BTN_DISP_6 = "6",
+            SEND_BTN_DISP_7 = "7",
+            SEND_BTN_DISP_8 = "8",
+            SEND_BTN_DISP_9 = "9",
+            SEND_BTN_DISP_10 = "10",
+            SEND_BTN_DISP_11 = "11",
+            SEND_BTN_DISP_12 = "12";
+
 
 
     /*

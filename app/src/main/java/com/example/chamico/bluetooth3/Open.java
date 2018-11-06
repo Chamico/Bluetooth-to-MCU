@@ -12,12 +12,14 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CompoundButton;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.chamico.bluetooth3.ContronlActivity.contronlActivity;
 import static com.example.chamico.bluetooth3.ContronlActivity.myReceiveMessageAdapter;
 import static com.example.chamico.bluetooth3.ContronlActivity.myReceiveMessageList;
 import static com.example.chamico.bluetooth3.ContronlActivity.mySendMessageAdapter;
@@ -135,6 +137,10 @@ public class Open {
     *   @date: 2018/05/01
      */
     public void initMainUI(){
+
+        //设置标题
+        mainActivity.mainTitle.setText(myFunction.APP_NAME);
+
         //结束上一个Activity
         if(MyFunction.contronlActivityFlag){
             //true 执行，表明 ContronlActivity 已打开

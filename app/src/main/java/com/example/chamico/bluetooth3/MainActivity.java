@@ -42,15 +42,19 @@ public class MainActivity extends Activity {
     public Button mainBtnStopSearch;
     public Button mainBtnAbout;
     public Button mainBtnExplain;
+    public TextView mainTitle;
     public ListView mainLVDevice;
     public ListView mainLVDevieceBounded;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //
         //绑定“连接”界面UI控件的ID
         boundMainUI();
         //初始化“连接”界面UI  &&  判断蓝牙是够存在
+        myFiles.initFile();
         myOpen.initMainUI();
         //在“连接”界面为跳转到不同的界面设置监听器
         myOpen.setChangeActivityListenerOnMain();
@@ -69,7 +73,7 @@ public class MainActivity extends Activity {
         //myFiles.initData();
         //myFiles.readFile("/storage/emulated/0/test/log.txt");
         //myFiles.save();
-
+        //initFile
     }
 
     /*
@@ -79,8 +83,9 @@ public class MainActivity extends Activity {
     public void boundMainUI(){
 
         MyFunction.mainActivityFlag = true;
-
+        mainActivity = MainActivity.this;
         //绑定ID
+        mainTitle = (TextView) findViewById(R.id.mainTitle);
         mainBtnMain = (Button) findViewById(R.id.mainBtnMain);
         mainBtnContronl = (Button) findViewById(R.id.mainBtnContronl);
         mainSwhOpen = (Switch) findViewById(R.id.mainSwhOpen);
@@ -97,7 +102,6 @@ public class MainActivity extends Activity {
         mainLVDevice = (ListView) findViewById(R.id.mainLVDevice);
         mainLVDevieceBounded = (ListView) findViewById(R.id.mainLVDevieceBounded);
 
-        mainActivity = MainActivity.this;
 
 
     }
