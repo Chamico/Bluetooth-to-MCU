@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +25,7 @@ import java.util.List;
 
 import static com.example.chamico.bluetooth3.MyFunction.ISDEVICECONNECTED;
 import static com.example.chamico.bluetooth3.Open.mBluetoothChatService;
-
+import static com.example.chamico.bluetooth3.MyFunction.myFunction;
 
 /*
 *   @explain: This is Contronl Activity
@@ -56,13 +57,14 @@ public class ContronlActivity extends Activity {
     private Button contronlBtnSendEditTextMessaga;
     private Button contronlBtnMain;
     private Button contronlBtnContronl;
+    private Button contronlBtnSendDispPause;
+    private Button contronlBtnReceiveDispPause;
     //ListViewAdapter
     public static ReceiveMessageAdapter myReceiveMessageAdapter;
     public static SendMessageAdapter mySendMessageAdapter;
     public static List<String> mySendMessageListt = new ArrayList<>();
     public static List<String> myReceiveMessageList = new ArrayList<>();
 
-    private MyFunction myFunction = new MyFunction();
 
     public ItemsDialogFragment itemsDialogFragment;
     /**
@@ -75,6 +77,7 @@ public class ContronlActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contronl);
+        Log.e("ContronlStatu", "OnCreate");
 
         //绑定“控制”界面的UI控件ID
         boundContronlUI();
@@ -82,6 +85,8 @@ public class ContronlActivity extends Activity {
         initContronlUI();
         //初始化发送的数据源
         initDate();
+        Log.e("SelfDialog", "ContronlSendDisp " + myFunction.SEND_BTN_DISP_1);
+        Log.e("SelfDialog", "ContronlSendData " + myFunction.SEND_INFO_1);
         //在“控制”界面，为跳转到不同的界面设置监听器
         setChangeActivityListenerOnContronl();
         //在“控制”界面，为 “说明” 按钮设置监听器
@@ -90,11 +95,50 @@ public class ContronlActivity extends Activity {
         setSendMessageListenerOnContronl();
         //在“控制”界面，为“清空信息"控件设置监听器
         setCleatListVIewListenerOnContronl();
+        //在“控制”，为“暂停显示”控件设置监听器
+        setDispPause();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
+    /*
+   *   @explain: 在“控制”，为“暂停显示”控件设置监听器
+   *   @date: 2018/11/10
+    */
+    private void setDispPause(){
+
+        //发送数据
+        contronlBtnSendDispPause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(myFunction.CONTRONLSENDDISPPAUSE){
+                    contronlBtnSendDispPause.setText("恢复显示");
+                    myFunction.CONTRONLSENDDISPPAUSE = false;
+                }else{
+                    contronlBtnSendDispPause.setText("暂停显示");
+                    myFunction.CONTRONLSENDDISPPAUSE = true;
+                }
+
+            }
+        });
+
+        //接受数据
+        contronlBtnReceiveDispPause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(myFunction.CONTRONLRECEIVEDISPPAUSE){
+                    contronlBtnReceiveDispPause.setText("恢复显示");
+                    myFunction.CONTRONLRECEIVEDISPPAUSE = false;
+                }else{
+                    contronlBtnReceiveDispPause.setText("暂停显示");
+                    myFunction.CONTRONLRECEIVEDISPPAUSE = true;
+                }
+            }
+        });
+    }
     /*
    *   @explain: 在“控制”界面，为“发送信息系列”控件设置监听器
    *   @date: 2018/06/11
@@ -104,9 +148,9 @@ public class ContronlActivity extends Activity {
         contronlBtnsendBtnMessage_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ISDEVICECONNECTED){
-                    sendMessage(myFunction.SENDMSG_1);
-                }else{
+                if (ISDEVICECONNECTED) {
+                    sendMessage(myFunction.getSEND_INFO_1());
+                } else {
                     myFunction.showToast("连接错误，请重启APP并重新连接设备再试");
                 }
 
@@ -116,9 +160,9 @@ public class ContronlActivity extends Activity {
         contronlBtnsendBtnMessage_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ISDEVICECONNECTED){
-                    sendMessage(myFunction.SENDMSG_2);
-                }else{
+                if (ISDEVICECONNECTED) {
+                    sendMessage(myFunction.getSEND_INFO_2());
+                } else {
                     myFunction.showToast("连接错误，请重启APP并重新连接设备再试");
                 }
 
@@ -128,9 +172,9 @@ public class ContronlActivity extends Activity {
         contronlBtnsendBtnMessage_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ISDEVICECONNECTED){
-                    sendMessage(myFunction.SENDMSG_3);
-                }else{
+                if (ISDEVICECONNECTED) {
+                    sendMessage(myFunction.getSEND_INFO_3());
+                } else {
                     myFunction.showToast("连接错误，请重启APP并重新连接设备再试");
                 }
 
@@ -140,9 +184,9 @@ public class ContronlActivity extends Activity {
         contronlBtnsendBtnMessage_4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ISDEVICECONNECTED){
-                    sendMessage(myFunction.SENDMSG_4);
-                }else{
+                if (ISDEVICECONNECTED) {
+                    sendMessage(myFunction.getSEND_INFO_4());
+                } else {
                     myFunction.showToast("连接错误，请重启APP并重新连接设备再试");
                 }
 
@@ -152,9 +196,9 @@ public class ContronlActivity extends Activity {
         contronlBtnsendBtnMessage_5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ISDEVICECONNECTED){
-                    sendMessage(myFunction.SENDMSG_5);
-                }else{
+                if (ISDEVICECONNECTED) {
+                    sendMessage(myFunction.getSEND_INFO_5());
+                } else {
                     myFunction.showToast("连接错误，请重启APP并重新连接设备再试");
                 }
 
@@ -164,9 +208,9 @@ public class ContronlActivity extends Activity {
         contronlBtnsendBtnMessage_6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ISDEVICECONNECTED){
-                    sendMessage(myFunction.SENDMSG_6);
-                }else{
+                if (ISDEVICECONNECTED) {
+                    sendMessage(myFunction.getSEND_INFO_6());
+                } else {
                     myFunction.showToast("连接错误，请重启APP并重新连接设备再试");
                 }
 
@@ -176,9 +220,9 @@ public class ContronlActivity extends Activity {
         contronlBtnsendBtnMessage_7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ISDEVICECONNECTED){
-                    sendMessage(myFunction.SENDMSG_7);
-                }else{
+                if (ISDEVICECONNECTED) {
+                    sendMessage(myFunction.getSEND_INFO_7());
+                } else {
                     myFunction.showToast("连接错误，请重启APP并重新连接设备再试");
                 }
 
@@ -188,9 +232,9 @@ public class ContronlActivity extends Activity {
         contronlBtnsendBtnMessage_8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ISDEVICECONNECTED){
-                    sendMessage(myFunction.SENDMSG_8);
-                }else{
+                if (ISDEVICECONNECTED) {
+                    sendMessage(myFunction.getSEND_INFO_8());
+                } else {
                     myFunction.showToast("连接错误，请重启APP并重新连接设备再试");
                 }
 
@@ -200,9 +244,9 @@ public class ContronlActivity extends Activity {
         contronlBtnsendBtnMessage_9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ISDEVICECONNECTED){
-                    sendMessage(myFunction.SENDMSG_9);
-                }else{
+                if (ISDEVICECONNECTED) {
+                    sendMessage(myFunction.getSEND_INFO_9());
+                } else {
                     myFunction.showToast("连接错误，请重启APP并重新连接设备再试");
                 }
 
@@ -212,9 +256,9 @@ public class ContronlActivity extends Activity {
         contronlBtnsendBtnMessage_10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ISDEVICECONNECTED){
-                    sendMessage(myFunction.SENDMSG_10);
-                }else{
+                if (ISDEVICECONNECTED) {
+                    sendMessage(myFunction.getSEND_INFO_10());
+                } else {
                     myFunction.showToast("连接错误，请重启APP并重新连接设备再试");
                 }
 
@@ -224,9 +268,9 @@ public class ContronlActivity extends Activity {
         contronlBtnsendBtnMessage_11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ISDEVICECONNECTED){
-                    sendMessage(myFunction.SENDMSG_11);
-                }else{
+                if (ISDEVICECONNECTED) {
+                    sendMessage(myFunction.getSEND_INFO_11());
+                } else {
                     myFunction.showToast("连接错误，请重启APP并重新连接设备再试");
                 }
 
@@ -236,9 +280,9 @@ public class ContronlActivity extends Activity {
         contronlBtnsendBtnMessage_12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ISDEVICECONNECTED){
-                    sendMessage(myFunction.SENDMSG_12);
-                }else{
+                if (ISDEVICECONNECTED) {
+                    sendMessage(myFunction.getSEND_INFO_12());
+                } else {
                     myFunction.showToast("连接错误，请重启APP并重新连接设备再试");
                 }
 
@@ -248,10 +292,10 @@ public class ContronlActivity extends Activity {
         contronlBtnSendEditTextMessaga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ISDEVICECONNECTED){
+                if (ISDEVICECONNECTED) {
                     sendMessage(contronlETSendMessage.getText().toString());
                     contronlBtnSendEditTextMessaga.clearComposingText();
-                }else{
+                } else {
                     myFunction.showToast("连接错误，请重启APP并重新连接设备再试");
                 }
 
@@ -322,6 +366,9 @@ public class ContronlActivity extends Activity {
         contronlBtnSendEditTextMessaga = (Button) findViewById(R.id.contronlBtnSendEditTextMessaga);
         contronlBtnMain = (Button) findViewById(R.id.contronlBtnMain);
         contronlBtnContronl = (Button) findViewById(R.id.contronlBtnContronl);
+
+        contronlBtnSendDispPause = (Button) findViewById(R.id.contronlBtnSendDispPause);
+        contronlBtnReceiveDispPause = (Button) findViewById(R.id.contronlBtnReceiveDispPause);
     }
 
     /*
@@ -372,20 +419,21 @@ public class ContronlActivity extends Activity {
         itemsDialogFragment = new ItemsDialogFragment();
     }
 
-    private void initDate(){
+    private void initDate() {
         //init the send message date.
-        myFunction.SENDMSG_1 = contronlBtnsendBtnMessage_1.getText().toString();
-        myFunction.SENDMSG_2 = contronlBtnsendBtnMessage_2.getText().toString();
-        myFunction.SENDMSG_3 = contronlBtnsendBtnMessage_3.getText().toString();
-        myFunction.SENDMSG_4 = contronlBtnsendBtnMessage_4.getText().toString();
-        myFunction.SENDMSG_5 = contronlBtnsendBtnMessage_5.getText().toString();
-        myFunction.SENDMSG_6 = contronlBtnsendBtnMessage_6.getText().toString();
-        myFunction.SENDMSG_7 = contronlBtnsendBtnMessage_7.getText().toString();
-        myFunction.SENDMSG_8 = contronlBtnsendBtnMessage_8.getText().toString();
-        myFunction.SENDMSG_9 = contronlBtnsendBtnMessage_9.getText().toString();
-        myFunction.SENDMSG_10 = contronlBtnsendBtnMessage_10.getText().toString();
-        myFunction.SENDMSG_11 = contronlBtnsendBtnMessage_11.getText().toString();
-        myFunction.SENDMSG_12 = contronlBtnsendBtnMessage_12.getText().toString();
+
+        contronlActivity.contronlBtnsendBtnMessage_1.setText(myFunction.SEND_BTN_DISP_1);
+        contronlActivity.contronlBtnsendBtnMessage_2.setText(myFunction.SEND_BTN_DISP_2);
+        contronlActivity.contronlBtnsendBtnMessage_3.setText(myFunction.SEND_BTN_DISP_3);
+        contronlActivity.contronlBtnsendBtnMessage_4.setText(myFunction.SEND_BTN_DISP_4);
+        contronlActivity.contronlBtnsendBtnMessage_5.setText(myFunction.SEND_BTN_DISP_5);
+        contronlActivity.contronlBtnsendBtnMessage_6.setText(myFunction.SEND_BTN_DISP_6);
+        contronlActivity.contronlBtnsendBtnMessage_7.setText(myFunction.SEND_BTN_DISP_7);
+        contronlActivity.contronlBtnsendBtnMessage_8.setText(myFunction.SEND_BTN_DISP_8);
+        contronlActivity.contronlBtnsendBtnMessage_9.setText(myFunction.SEND_BTN_DISP_9);
+        contronlActivity.contronlBtnsendBtnMessage_10.setText(myFunction.SEND_BTN_DISP_10);
+        contronlActivity.contronlBtnsendBtnMessage_11.setText(myFunction.SEND_BTN_DISP_11);
+        contronlActivity.contronlBtnsendBtnMessage_12.setText(myFunction.SEND_BTN_DISP_12);
 
         /*
           * @Explain: regester a Broadcast to receive the information that the
@@ -394,14 +442,14 @@ public class ContronlActivity extends Activity {
         IntentFilter filter = new IntentFilter();
         filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
 
-        contronlActivity.registerReceiver(changeReceiver,filter);
+        contronlActivity.registerReceiver(changeReceiver, filter);
     }
 
     private BroadcastReceiver changeReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            switch (action){
+            switch (action) {
                 case BluetoothDevice.ACTION_ACL_DISCONNECTED:
                     //蓝牙连接被切断
                     ISDEVICECONNECTED = false;
@@ -424,7 +472,7 @@ public class ContronlActivity extends Activity {
     }
 
     public void showItemsDialogFragment() {
-        String[] items = {"断开连接","使用说明", "配置按钮", "退出"};
+        String[] items = {"断开连接", "使用说明", "配置按钮", "退出"};
         itemsDialogFragment.show("", items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -466,6 +514,8 @@ public class ContronlActivity extends Activity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
         AppIndex.AppIndexApi.start(client, getIndexApiAction());
+
+        Log.e("ContronlStatu", "OnStart");
     }
 
     @Override
@@ -476,6 +526,8 @@ public class ContronlActivity extends Activity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
+
+        Log.e("ContronlStatu", "OnStop");
     }
 
     @Override
@@ -486,5 +538,20 @@ public class ContronlActivity extends Activity {
          */
         super.onDestroy();
         unregisterReceiver(changeReceiver);
+
+        Log.e("ContronlStatu", "OnDestory");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        Log.e("ContronlStatu", "OnPause");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("ContronlStatu", "OnResume");
     }
 }

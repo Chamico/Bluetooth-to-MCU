@@ -12,14 +12,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.CompoundButton;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.chamico.bluetooth3.ContronlActivity.contronlActivity;
 import static com.example.chamico.bluetooth3.ContronlActivity.myReceiveMessageAdapter;
 import static com.example.chamico.bluetooth3.ContronlActivity.myReceiveMessageList;
 import static com.example.chamico.bluetooth3.ContronlActivity.mySendMessageAdapter;
@@ -59,17 +57,21 @@ public class Open {
     public BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+
             String action = intent.getAction();
+            myFunction.showToast(action.toString());
             device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+
             switch (action){
                 //找到设备
                 case BluetoothDevice.ACTION_FOUND:
+
+                    myFunction.showToast("找到设备"+device.getName());
                     //避免重复添加已经绑定过的设备
                     if (device.getBondState() == BluetoothDevice.BOND_BONDED) {
                         //此处的adapter是列表的adapter，不是BluetoothAdapter
                         break;
                     }
-                    //myFunction.showToast("找到设备"+device.getName());
                     mDeviceList.add(device);
                     deviceAdapter.notifyDataSetChanged();
                     break;
@@ -82,6 +84,7 @@ public class Open {
                 //
                 case BluetoothAdapter.ACTION_DISCOVERY_FINISHED:
                     //myFunction.showToast("结束查找");
+                    myFunction.ISBONDING = false;
                     break;
                 case BluetoothDevice.ACTION_BOND_STATE_CHANGED:
                     BluetoothDevice remoteDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
@@ -91,6 +94,7 @@ public class Open {
                     }
                     status = intent.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE,0);
                     if( status == BluetoothDevice.BOND_BONDED) {
+                        myFunction.ISBONDING = false;
                         // 绑定设备成功，开始连接设备
                         myFunction.showToast("Bonded " + remoteDevice.getName());
                         //添加到绑定列表
@@ -98,9 +102,11 @@ public class Open {
                         mBoundDeviceAdapter.notifyDataSetChanged();
                     }
                     else if( status == BluetoothDevice.BOND_BONDING){
+                        myFunction.ISBONDING = true;
                         myFunction.showToast("Bonding " + remoteDevice.getName());
                     }
                     else if(status == BluetoothDevice.BOND_NONE){
+                        myFunction.ISBONDING = false;
                         myFunction.showToast("Not bond " + remoteDevice.getName());
                     }
                     break;
@@ -278,6 +284,7 @@ public class Open {
             @Override
             public void onClick(View v) {
                 if(ISMYBTOPEN){
+                    //myFunction.showToast("开始搜索");
                     //如果蓝牙处于打开状态
                     IntentFilter filter = new IntentFilter();
                     //开始查找
@@ -358,7 +365,11 @@ public class Open {
                 new AlertDialog.Builder(mainActivity)
                         .setTitle("About Us")
                         .setIcon(R.drawable.main_about)
-                        .setMessage("    @Explain: 机器人工作室御用蓝牙APP\n\n    @Author: Chamico\n\n    @Connect: ChenTianhai114@163.com\n\n    @More: https://blog.csdn.net/Chamic\n\n")
+                        .setMessage("基于MCU的球动式平衡机器人\n\n" +
+                                "项目编号: 201810742086\n\n" +
+                                "项目组员: 陈天海、刘宇森、马彦明、郑冰欣\n\n" +
+                                "指导老师: 刘勇、张兴莉\n\n" +
+                                "@More: https://github.com/Chamico/Bluetooth-to-MCU\n\n")
                         .setNegativeButton("确定", null)
                         .show();
             }
@@ -382,9 +393,12 @@ public class Open {
                    // myFunction.showToast("null Object");
                 }
 
-                 mBluetoothChatService.connect(remoteDevice);
+                if(myFunction.ISBONDING){
 
-
+                }
+                else {
+                    mBluetoothChatService.connect(remoteDevice);
+                }
             }
         });
 
@@ -430,7 +444,10 @@ public class Open {
                         byte[] writeBuf = (byte[]) msg.obj;
                         String writeMessage = new String(writeBuf);
                         mySendMessageListt.add(writeMessage);
-                        mySendMessageAdapter.notifyDataSetChanged();
+                        if(myFunction.CONTRONLSENDDISPPAUSE){
+                            mySendMessageAdapter.notifyDataSetChanged();
+                        }
+
                     }
 
                     break;
@@ -440,7 +457,9 @@ public class Open {
                         String readMessage = new String(readBuf, 0, msg.arg1);
                         replaceBlank(readMessage);
                         myReceiveMessageList.add(replaceBlank(readMessage));
-                        myReceiveMessageAdapter.notifyDataSetChanged();
+                        if(myFunction.CONTRONLRECEIVEDISPPAUSE){
+                            myReceiveMessageAdapter.notifyDataSetChanged();
+                        }
                     }
 
                     break;

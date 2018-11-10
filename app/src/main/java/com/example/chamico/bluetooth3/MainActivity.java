@@ -15,7 +15,8 @@ import java.io.File;
 import static com.example.chamico.bluetooth3.MyFunction.ISDEVICECONNECTED;
 
 import static com.example.chamico.bluetooth3.Open.remoteDevice;
-
+import static com.example.chamico.bluetooth3.MyFunction.myFunction;
+import static com.example.chamico.bluetooth3.Files.myFiles;
 /*
 *   @explain: This is Connect Activity
 *   @author: Chamcio
@@ -24,8 +25,6 @@ import static com.example.chamico.bluetooth3.Open.remoteDevice;
 public class MainActivity extends Activity {
 
     private Open myOpen = new Open();
-    private MyFunction myFunction = new MyFunction();
-    private Files myFiles = new Files();
 
     public static MainActivity mainActivity;
 
@@ -55,6 +54,8 @@ public class MainActivity extends Activity {
         boundMainUI();
         //初始化“连接”界面UI  &&  判断蓝牙是够存在
         myFiles.initFile();
+        Log.e("SelfDialog","MainSendDisp " + myFunction.SEND_BTN_DISP_1);
+        Log.e("SelfDialog","MainSendData " + myFunction.SEND_INFO_1);
         myOpen.initMainUI();
         //在“连接”界面为跳转到不同的界面设置监听器
         myOpen.setChangeActivityListenerOnMain();
